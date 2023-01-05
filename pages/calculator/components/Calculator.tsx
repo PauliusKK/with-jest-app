@@ -41,6 +41,8 @@ export const Calculator = () => {
 
   return (
     <>
+      <p>Please type in a number from 1 to 1000</p>
+
       <input value={inputValue} onChange={handleInputValueChange} />
 
       {error && <p className={styles.redText}>{error}</p>}
