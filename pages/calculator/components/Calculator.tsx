@@ -15,6 +15,10 @@ export const Calculator = () => {
     setInputValue(value);
     setConvertedValueInRomanNumerals("");
 
+    if (!value) {
+      return false;
+    }
+
     if (value.includes(".") || value.includes(",")) {
       return setError("Value should not have decimals");
     }
