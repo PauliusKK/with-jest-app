@@ -1,22 +1,7 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "@/pages/index.module.css";
-
-const RomanNumerals = {
-  M: 1000,
-  CM: 900,
-  D: 500,
-  CD: 400,
-  C: 100,
-  XC: 90,
-  L: 50,
-  XL: 40,
-  X: 10,
-  IX: 9,
-  V: 5,
-  IV: 4,
-  I: 1,
-};
+import { getConvertedValueInRomanNumerals } from "utils/getConvertedValueInRomanNumerals";
 
 export const Calculator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -43,23 +28,11 @@ export const Calculator = () => {
     }
 
     setError("");
-    getConvertedValueInRomanNumerals(+value);
-  };
 
-  const getConvertedValueInRomanNumerals = (inputValue: number) => {
-    let romanNumbersToReturn = "";
-    let valueLeftToConvert = inputValue;
-
-    Object.keys(RomanNumerals).forEach((key) => {
-      const keyValue = RomanNumerals[key as keyof typeof RomanNumerals]; // really hate this type but nothing else worked.
-
-      while (valueLeftToConvert >= keyValue) {
-        romanNumbersToReturn += key;
-        valueLeftToConvert -= keyValue;
-      }
-    });
-
-    return setConvertedValueInRomanNumerals(romanNumbersToReturn);
+    const convertedValueInRomanNumerals = getConvertedValueInRomanNumerals(
+      +value
+    );
+    setConvertedValueInRomanNumerals(convertedValueInRomanNumerals);
   };
 
   return (
